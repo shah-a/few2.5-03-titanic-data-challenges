@@ -25,7 +25,7 @@
 // Or if property = 'age' -> [40, 26, 22, 28, 23, 45, 21, ...]
 
 const getAllValuesForProperty = (data, property) => {
-	return []
+  return []
 }
 
 // 2 -------------------------------------------------------------
@@ -34,7 +34,7 @@ const getAllValuesForProperty = (data, property) => {
 // array of all the male passengers [{...}, {...}, {...}, ...]
 
 const filterByProperty = (data, property, value) => {
-	return []
+  return []
 }
 
 // 3 -------------------------------------------------------------
@@ -43,7 +43,7 @@ const filterByProperty = (data, property, value) => {
 // given property have been removed
 
 const filterNullForProperty = (data, property) => {
-	return []
+  return []
 }
 
 // 4 -------------------------------------------------------------
@@ -52,7 +52,7 @@ const filterNullForProperty = (data, property) => {
 // Return the total of all values for a given property. This
 
 const sumAllProperty = (data, property) => {
-	return 0
+  return 0
 }
 
 
@@ -67,7 +67,7 @@ const sumAllProperty = (data, property) => {
 // at Cherbourg, 77 emabrked at Queenstown, and 2 are undedfined
 
 const countAllProperty = (data, property) => {
-	return {}
+  return {}
 }
 
 
@@ -77,7 +77,7 @@ const countAllProperty = (data, property) => {
 // of items in each bucket.
 
 const makeHistogram = (data, property, step) => {
-	return []
+  return []
 }
 
 // 7 ------------------------------------------------------------
@@ -86,7 +86,7 @@ const makeHistogram = (data, property, step) => {
 // to divide each value by the maximum value in the array.
 
 const normalizeProperty = (data, property) => {
-	return []
+  return []
 }
 
 // 8 ------------------------------------------------------------
@@ -97,18 +97,18 @@ const normalizeProperty = (data, property) => {
 // would return ['male', 'female']
 
 const getUniqueValues = (data, property) => {
-	return []
+  return []
 }
 
 // --------------------------------------------------------------
 // --------------------------------------------------------------
 module.exports = {
-	getAllValuesForProperty,
-	filterByProperty,
-	filterNullForProperty,
-	sumAllProperty,
-	countAllProperty,
-	makeHistogram,
-	normalizeProperty,
-	getUniqueValues
+  getAllValuesForProperty,
+  filterByProperty,
+  filterNullForProperty,
+  sumAllProperty,
+  countAllProperty,
+  makeHistogram,
+  normalizeProperty,
+  getUniqueValues
 }
