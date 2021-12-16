@@ -25,7 +25,7 @@
 // Or if property = 'age' -> [40, 26, 22, 28, 23, 45, 21, ...]
 
 const getAllValuesForProperty = (data, property) => {
-  return []
+  return data.map((passenger) => passenger.fields[property])
 }
 
 // 2 -------------------------------------------------------------
@@ -34,7 +34,7 @@ const getAllValuesForProperty = (data, property) => {
 // array of all the male passengers [{...}, {...}, {...}, ...]
 
 const filterByProperty = (data, property, value) => {
-  return []
+  return data.filter((passenger) => passenger.fields[property] === value)
 }
 
 // 3 -------------------------------------------------------------
@@ -43,7 +43,7 @@ const filterByProperty = (data, property, value) => {
 // given property have been removed
 
 const filterNullForProperty = (data, property) => {
-  return []
+  return data.filter((passenger) => passenger.fields[property] !== undefined)
 }
 
 // 4 -------------------------------------------------------------
@@ -52,9 +52,10 @@ const filterNullForProperty = (data, property) => {
 // Return the total of all values for a given property. This
 
 const sumAllProperty = (data, property) => {
-  return 0
+  return data.reduce((acc, passenger) => (
+    typeof (passenger.fields[property]) === 'number' ? acc += passenger.fields[property] : acc
+  ), 0)
 }
-
 
 // 5 -------------------------------------------------------------
 // Count unique values for property. The goal here is return an 
@@ -67,9 +68,11 @@ const sumAllProperty = (data, property) => {
 // at Cherbourg, 77 emabrked at Queenstown, and 2 are undedfined
 
 const countAllProperty = (data, property) => {
-  return {}
+  return data.reduce((acc, passenger) => {
+    acc[passenger.fields[property]] ? acc[passenger.fields[property]]++ : acc[passenger.fields[property]] = 1
+    return acc
+  }, {})
 }
-
 
 // 6 ------------------------------------------------------------
 // Make histogram. The goal is to return an array with values 
@@ -77,7 +80,14 @@ const countAllProperty = (data, property) => {
 // of items in each bucket.
 
 const makeHistogram = (data, property, step) => {
-  return []
+  const filteredData = data.filter((passenger) => passenger.fields[property] !== undefined)
+  const histogram = filteredData.reduce((acc, passenger) => {
+    const index = Math.floor(passenger.fields[property] / step)
+    acc[index] ? acc[index]++ : acc[index] = 1
+    return acc
+  }, [])
+
+  return Array.from(histogram, (num) => num || 0)
 }
 
 // 7 ------------------------------------------------------------
@@ -86,7 +96,10 @@ const makeHistogram = (data, property, step) => {
 // to divide each value by the maximum value in the array.
 
 const normalizeProperty = (data, property) => {
-  return []
+  const filteredData = data.filter((passenger) => passenger.fields[property] !== undefined)
+  const propertyData = filteredData.map((passenger) => passenger.fields[property])
+  const maxValue = Math.max(...propertyData)
+  return propertyData.map((passenger) => passenger / maxValue)
 }
 
 // 8 ------------------------------------------------------------
@@ -97,7 +110,12 @@ const normalizeProperty = (data, property) => {
 // would return ['male', 'female']
 
 const getUniqueValues = (data, property) => {
-  return []
+  return data.reduce((acc, passenger) => {
+    if (!acc.includes(passenger.fields[property])) {
+      acc.push(passenger.fields[property])
+    }
+    return acc
+  }, [])
 }
 
 // --------------------------------------------------------------
